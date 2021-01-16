@@ -493,7 +493,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 823
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -657,6 +657,10 @@ MonoBehaviour:
   - {fileID: -9094892234975123393}
   - {fileID: 2979324204515314261}
   remoteLayerName: RemotePlayer
+  dontDrawLayerName: DontDraw
+  playerGraphics: {fileID: 8771274655974948988}
+  playerUIPrefab: {fileID: 3873858722955928585, guid: 37b63ff20a7d20842823014150df229d,
+    type: 3}
 --- !u!114 &2433390604998930161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,7 +709,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.6786404, y: -1.6661963, z: 10.515535}
+  m_ConnectedAnchor: {x: -1.1948998, y: 0.84, z: 0.93317014}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
