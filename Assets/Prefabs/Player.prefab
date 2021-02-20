@@ -565,6 +565,8 @@ MonoBehaviour:
   mouseSensitivityX: 10
   mouseSensitivityY: 8
   thrusterForce: 1000
+  thrusterFuelBurnSpeed: 0.5
+  thrusterFuelRegenSpeed: 0.5
   jointSpring: 20
   jointMaxForce: 50
 --- !u!114 &5365487985370230390
@@ -657,7 +659,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.342843, y: -3.2374956e-17, z: 2.9160767}
+  m_ConnectedAnchor: {x: -3.5738351, y: -1.09684454e-16, z: 9.879498}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -1065,7 +1067,9 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.scalar
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: d8c41be67f41aa545ae053b0b927f821, type: 3}
+    - {fileID: 13500000, guid: d8c41be67f41aa545ae053b0b927f821, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d8c41be67f41aa545ae053b0b927f821, type: 3}
 --- !u!4 &393089723 stripped
 Transform:

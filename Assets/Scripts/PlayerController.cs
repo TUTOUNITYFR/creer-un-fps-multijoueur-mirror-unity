@@ -17,6 +17,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float thrusterForce = 1000f;
 
+    [SerializeField]
+    private float thrusterFuelBurnSpeed = 1f;
+    [SerializeField]
+    private float thrusterFuelRegenSpeed = 0.3f;
+    private float thrusterFuelAmount = 1f;
+
+    public float GetThrusterFuelAmount()
+    {
+        return thrusterFuelAmount;
+    }
+
     [Header("Joint Options")]
     [SerializeField]
     private float jointSpring = 20f;
@@ -37,6 +48,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        RaycastHit _hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out _hit, 100f))
+        {
+            joint.targetPosition = new Vector3(0f, -_hit.point.y, 0f);
+        }
+        else
+        {
+            joint.targetPosition = new Vector3(0f, 0f, 0f);
+        }
+
         // Calculer la vélocité (vitesse) du mouvement de notre joueur
         float xMov = Input.GetAxis("Horizontal");
         float zMov = Input.GetAxis("Vertical");
@@ -67,15 +88,23 @@ public class PlayerController : MonoBehaviour
 
         // Calcul de la force du jetpack / thruster
         Vector3 thrusterVelocity = Vector3.zero;
-        if(Input.GetButton("Jump"))
+        if(Input.GetButton("Jump") && thrusterFuelAmount > 0)
         {
-            thrusterVelocity = Vector3.up * thrusterForce;
-            SetJointSettings(0f);
+            thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
+
+            if(thrusterFuelAmount >= 0.01f)
+            {
+                thrusterVelocity = Vector3.up * thrusterForce;
+                SetJointSettings(0f);
+            }
         }
         else
         {
+            thrusterFuelAmount += thrusterFuelRegenSpeed * Time.deltaTime;
             SetJointSettings(jointSpring);
         }
+
+        thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 1f);
 
         // Appliquer la force du jetpack / thruster
         motor.ApplyThruster(thrusterVelocity);
