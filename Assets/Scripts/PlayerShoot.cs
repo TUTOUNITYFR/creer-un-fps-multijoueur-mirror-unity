@@ -49,10 +49,42 @@ public class PlayerShoot : NetworkBehaviour
         
     }
 
+    [Command]
+    void CmdOnHit(Vector3 pos, Vector3 normal)
+    {
+        RpcDoHitEffect(pos, normal);
+    }
+
+    [ClientRpc]
+    void RpcDoHitEffect(Vector3 pos, Vector3 normal)
+    {
+        GameObject hitEffect = Instantiate(weaponManager.GetCurrentGraphics().hitEffectPrefab, pos, Quaternion.LookRotation(normal));
+        Destroy(hitEffect, 2f);
+    }
+
+    // Fonction appelée sur le serveur lorsque notre joueur tir (On prévient le serveur de notre tir)
+    [Command]
+    void CmdOnShoot()
+    {
+        RpcDoShootEffect();
+    }
+
+    // Fait apparaitre les effets de tir chez tous les clients / joueurs
+    [ClientRpc]
+    void RpcDoShootEffect()
+    {
+        weaponManager.GetCurrentGraphics().muzzleFlash.Play();
+    }
+
     [Client]
     private void Shoot()
     {
-        Debug.Log("Tir effectué");
+        if(!isLocalPlayer)
+        {
+            return;
+        }
+
+        CmdOnShoot();
 
         RaycastHit hit;
 
@@ -62,6 +94,8 @@ public class PlayerShoot : NetworkBehaviour
             {
                 CmdPlayerShot(hit.collider.name, currentWeapon.damage);
             }
+
+            CmdOnHit(hit.point, hit.normal);
         }
     }
 
