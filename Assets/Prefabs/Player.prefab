@@ -611,6 +611,7 @@ MonoBehaviour:
   playerGraphics: {fileID: 8771274655974948988}
   playerUIPrefab: {fileID: 3873858722955928585, guid: 37b63ff20a7d20842823014150df229d,
     type: 3}
+  playerUIInstance: {fileID: 0}
 --- !u!114 &2433390604998930161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,7 +660,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.5738351, y: -1.09684454e-16, z: 9.879498}
+  m_ConnectedAnchor: {x: -5.5412498, y: -7.399712e-17, z: 6.6650677}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -779,6 +780,13 @@ MonoBehaviour:
   disableOnDeath:
   - {fileID: -9094892234975123393}
   - {fileID: 8771274655562078152}
+  disableGameObjectsOnDeath:
+  - {fileID: 8771274655974948988}
+  - {fileID: 8771274655489620707}
+  deathEffect: {fileID: 7257156907877402975, guid: 853cb0de6cf7dc24196eeb69fb5e20ec,
+    type: 3}
+  spawnEffect: {fileID: 1683028100954756874, guid: d19afe198bd546846847c2e5444c510e,
+    type: 3}
 --- !u!95 &2979324204515314261
 Animator:
   serializedVersion: 3
