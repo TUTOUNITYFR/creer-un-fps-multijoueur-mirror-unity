@@ -33,12 +33,38 @@ public class Player : NetworkBehaviour
     [SerializeField]
     private GameObject spawnEffect;
 
+    private bool firstSetup = true;
+
     public void Setup()
     {
-        wasEnabledOnStart = new bool[disableOnDeath.Length];
-        for (int i = 0; i < disableOnDeath.Length; i++)
+        if(isLocalPlayer)
         {
-            wasEnabledOnStart[i] = disableOnDeath[i].enabled;
+            // Changement de caméra
+            GameManager.instance.SetSceneCameraActive(false);
+            GetComponent<PlayerSetup>().playerUIInstance.SetActive(true);
+        }
+
+        CmdBroadcastNewPlayerSetup();
+    }
+
+    [Command(ignoreAuthority = true)]
+    private void CmdBroadcastNewPlayerSetup()
+    {
+        RpcSetupPlayerOnAllClients();
+    }
+
+    [ClientRpc]
+    private void RpcSetupPlayerOnAllClients()
+    {
+        if(firstSetup)
+        {
+            wasEnabledOnStart = new bool[disableOnDeath.Length];
+            for (int i = 0; i < disableOnDeath.Length; i++)
+            {
+                wasEnabledOnStart[i] = disableOnDeath[i].enabled;
+            }
+
+            firstSetup = false;
         }
 
         SetDefaults();
@@ -68,13 +94,6 @@ public class Player : NetworkBehaviour
             col.enabled = true;
         }
 
-        // Changement de caméra
-        if (isLocalPlayer)
-        {
-            GameManager.instance.SetSceneCameraActive(false);
-            GetComponent<PlayerSetup>().playerUIInstance.SetActive(true);
-        }
-
         // Apparition du système de particules de mort
         GameObject _gfxIns = Instantiate(spawnEffect, transform.position, Quaternion.identity);
         Destroy(_gfxIns, 3f);
@@ -88,7 +107,9 @@ public class Player : NetworkBehaviour
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
 
-        SetDefaults();
+        yield return new WaitForSeconds(0.1f);
+
+        Setup();
     }
 
     private void Update()

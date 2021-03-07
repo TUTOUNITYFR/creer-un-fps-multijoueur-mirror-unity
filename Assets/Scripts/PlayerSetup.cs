@@ -48,9 +48,10 @@ public class PlayerSetup : NetworkBehaviour
             {
                 ui.SetController(GetComponent<PlayerController>());
             }
-        }
 
-        GetComponent<Player>().Setup();
+            GetComponent<Player>().Setup();
+        }
+        
     }
 
     public override void OnStartClient()
@@ -81,7 +82,10 @@ public class PlayerSetup : NetworkBehaviour
     {
         Destroy(playerUIInstance);
 
-        GameManager.instance.SetSceneCameraActive(true);
+        if(isLocalPlayer)
+        {
+            GameManager.instance.SetSceneCameraActive(true);
+        }
 
         GameManager.UnregisterPlayer(transform.name);
     }

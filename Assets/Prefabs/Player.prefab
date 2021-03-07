@@ -841,9 +841,9 @@ MonoBehaviour:
   syncInterval: 0.1
   primaryWeapon:
     name: Blaster
-    damage: 5
+    damage: 3
     range: 100
-    fireRate: 100
+    fireRate: 15
     graphics: {fileID: 1558164915887587220, guid: 8ecf220969c06354ea1f86ce1b288b25,
       type: 3}
   weaponHolder: {fileID: 664983527696001329}
