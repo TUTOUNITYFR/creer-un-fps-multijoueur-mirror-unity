@@ -11,7 +11,7 @@ public class PlayerShoot : NetworkBehaviour
     [SerializeField]
     private LayerMask mask;
 
-    private PlayerWeapon currentWeapon;
+    private WeaponData currentWeapon;
     private WeaponManager weaponManager;
 
     void Start()

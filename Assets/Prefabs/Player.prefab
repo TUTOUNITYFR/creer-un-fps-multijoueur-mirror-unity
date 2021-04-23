@@ -777,6 +777,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   maxHealth: 100
+  kills: 0
+  deaths: 0
   disableOnDeath:
   - {fileID: -9094892234975123393}
   - {fileID: 8771274655562078152}
@@ -839,13 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  primaryWeapon:
-    name: Blaster
-    damage: 3
-    range: 100
-    fireRate: 15
-    graphics: {fileID: 1558164915887587220, guid: 8ecf220969c06354ea1f86ce1b288b25,
-      type: 3}
+  primaryWeapon: {fileID: 11400000, guid: b8f1c6c685b921e45ab9ea8ac4449f53, type: 2}
   weaponHolder: {fileID: 664983527696001329}
   weaponLayerName: Weapon
 --- !u!1 &8771274655974948988
