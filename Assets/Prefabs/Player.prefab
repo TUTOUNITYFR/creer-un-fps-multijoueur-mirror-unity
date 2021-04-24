@@ -841,9 +841,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  primaryWeapon: {fileID: 11400000, guid: b8f1c6c685b921e45ab9ea8ac4449f53, type: 2}
+  primaryWeapon: {fileID: 11400000, guid: 27e4605b912d6884eacf232438e236f5, type: 2}
   weaponHolder: {fileID: 664983527696001329}
   weaponLayerName: Weapon
+  currentMagazineSize: 0
+  isReloading: 0
 --- !u!1 &8771274655974948988
 GameObject:
   m_ObjectHideFlags: 0
