@@ -118,6 +118,12 @@ public class PlayerShoot : NetworkBehaviour
 
             CmdOnHit(hit.point, hit.normal);
         }
+
+        if (weaponManager.currentMagazineSize <= 0)
+        {
+            StartCoroutine(weaponManager.Reload());
+            return;
+        }
     }
 
     [Command]

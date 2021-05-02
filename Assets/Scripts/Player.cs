@@ -19,6 +19,11 @@ public class Player : NetworkBehaviour
     [SyncVar]
     private float currentHealth;
 
+    public float GetHealthPct()
+    {
+        return (float)currentHealth / maxHealth;
+    }
+
     public int kills;
     public int deaths;
 
@@ -124,7 +129,7 @@ public class Player : NetworkBehaviour
 
         if(Input.GetKeyDown(KeyCode.K))
         {
-            RpcTakeDamage(999, "Joueur");
+            RpcTakeDamage(25, "Joueur");
         }
     }
 
