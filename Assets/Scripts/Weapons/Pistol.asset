@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   name: Pistol
-  damage: 5
+  damage: 50
   range: 50
   fireRate: 0
   magazineSize: 10
