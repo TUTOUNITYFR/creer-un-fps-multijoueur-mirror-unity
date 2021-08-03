@@ -46,6 +46,11 @@ public class Player : NetworkBehaviour
 
     private bool firstSetup = true;
 
+    [SerializeField]
+    private AudioClip hitSound;
+    [SerializeField]
+    private AudioClip destroySound;
+
     public void Setup()
     {
         if(isLocalPlayer)
@@ -144,11 +149,15 @@ public class Player : NetworkBehaviour
             return;
         }
 
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(hitSound);
+
         currentHealth -= amount;
         Debug.Log(transform.name + " a maintenant : " + currentHealth + " points de vies.");
 
         if(currentHealth <= 0)
         {
+            audioSource.PlayOneShot(destroySound);
             Die(sourceID);
         }
     }

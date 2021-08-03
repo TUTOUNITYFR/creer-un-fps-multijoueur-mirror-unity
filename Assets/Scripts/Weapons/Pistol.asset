@@ -20,3 +20,5 @@ MonoBehaviour:
   reloadTime: 1
   graphics: {fileID: 8141475546232965196, guid: 3cfcc6bc3066cd34fb7fd525fbc154aa,
     type: 3}
+  shootSound: {fileID: 8300000, guid: bda5d56f16a611c4a96596bf9c42c4de, type: 3}
+  reloadSound: {fileID: 8300000, guid: de853522c82dd924387228f10252376f, type: 3}
